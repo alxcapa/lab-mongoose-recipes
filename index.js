@@ -32,6 +32,20 @@ mongoose
     Recipe.insertMany(data)
       .then(function (recette) {
         console.log("victoire");
+
+        Recipe.findOneAndUpdate(
+          { title: "Rigatoni alla Genovese" },
+          { duration: 100 },
+          {
+            new: true,
+          }
+        )
+          .then(function () {
+            console.log("victory");
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
       })
       .catch(function (err) {
         console.log(err);
