@@ -33,29 +33,31 @@ mongoose
       .then(function () {
         console.log("victoire");
 
-        Recipe.findOneAndUpdate(
-          { title: "Rigatoni alla Genovese" },
-          { duration: 100 },
-          {
+        Recipe.findOneAndUpdate({
+            title: "Rigatoni alla Genovese"
+          }, {
+            duration: 100
+          }, {
             new: true,
-          }
-        )
+          })
           .then(function () {
             console.log("victory");
-            Recipe.deleteOne({title:"Carrot Cake"})
-            .then(function() {
-              console.log('Carrot Cake removed')
-              mongoose.disconnect()
-            //     .then(function(){
-            //       console.log('connection close')
-            //     });
-            //     .catch(function (err) {
-            //       console.log('could not close connection',err)
-            //     })
-            })
-            .catch(function(err){
-              console.log(err)
-            })
+            Recipe.deleteOne({
+                title: "Carrot Cake"
+              })
+              .then(function () {
+                console.log('Carrot Cake removed')
+                mongoose.disconnect()
+                  .then(function () {
+                    console.log('connection close')
+                  })
+                  .catch(function (err) {
+                    console.log('could not close connection', err)
+                  })
+              })
+              .catch(function (err) {
+                console.log(err)
+              })
           })
           .catch(function (err) {
             console.log(err);
