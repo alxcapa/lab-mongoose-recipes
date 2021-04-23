@@ -30,7 +30,7 @@ mongoose
       });
 
     Recipe.insertMany(data)
-      .then(function (recette) {
+      .then(function () {
         console.log("victoire");
 
         Recipe.findOneAndUpdate(
@@ -42,6 +42,20 @@ mongoose
         )
           .then(function () {
             console.log("victory");
+            Recipe.deleteOne({title:"Carrot Cake"})
+            .then(function() {
+              console.log('Carrot Cake removed')
+              mongoose.disconnect()
+            //     .then(function(){
+            //       console.log('connection close')
+            //     });
+            //     .catch(function (err) {
+            //       console.log('could not close connection',err)
+            //     })
+            })
+            .catch(function(err){
+              console.log(err)
+            })
           })
           .catch(function (err) {
             console.log(err);
